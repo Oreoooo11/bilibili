@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视频数据分析报告</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- 引入 ECharts -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <nav>
+    <ul>
+      <li><a href="#partition_analysis">视频分区分布分析</a></li>
+      <li><a href="#duration_interaction">视频时长与互动关系</a></li>
+      <li><a href="#top_up_owners">头部UP主影响力分析</a></li>
+      <li><a href="#publish_time_analysis">视频发布时间分析</a></li>
+      <li><a href="#interaction_correlation">视频互动指标相关性分析</a></li>
+      <li><a href="#tag_cloud">热门视频标签词云</a></li>
+    </ul>
+  </nav>
+
+  <!-- 开屏图片 -->
+  <div class="banner">
+    <img src="banner.jpg" alt="Banner">
+  </div>
+
+  <!-- 内容区域 -->
+  <div class="content">
+    <!-- 视频分区分布分析 -->
+    <div id="partition_analysis" class="chart-card">
+      <h2>视频分区分布分析</h2>
+      <div id="partition_chart" style="width: 100%; height: 400px;"></div>
+    </div>
+
+    <!-- 视频时长与互动关系 -->
+    <div id="duration_interaction" class="chart-card">
+      <h2>视频时长与互动关系</h2>
+      <div id="duration_chart" style="width: 100%; height: 400px;"></div>
+    </div>
+
+    <!-- 头部UP主影响力分析 -->
+    <div id="top_up_owners" class="chart-card">
+      <h2>头部UP主影响力分析</h2>
+      <div id="top_up_chart" style="width: 100%; height: 400px;"></div>
+    </div>
+
+    <!-- 视频发布时间分析 -->
+    <div id="publish_time_analysis" class="chart-card">
+      <h2>视频发布时间分析</h2>
+      <div id="publish_chart" style="width: 100%; height: 400px;"></div>
+    </div>
+
+    <!-- 视频互动指标相关性分析 -->
+    <div id="interaction_correlation" class="chart-card">
+      <h2>视频互动指标相关性分析</h2>
+      <div id="correlation_chart" style="width: 100%; height: 400px;"></div>
+    </div>
+
+    <!-- 热门视频标签词云 -->
+    <div id="tag_cloud" class="chart-card">
+      <h2>热门视频标签词云</h2>
+      <img src="tag_cloud.png" alt="Tag Cloud">
+    </div>
+  </div>
+
+  <!-- 页尾 -->
+  <footer>
+    <p>联系方式: example@example.com</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
