@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>视频数据分析报告</title>
+  <title>视频数据洞察平台</title>
   <link rel="stylesheet" href="style.css" />
   <!-- ECharts -->
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
@@ -11,36 +11,53 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <!-- 导航栏（固定顶部） -->
+  <!-- 悬浮渐变导航 -->
   <nav class="navbar">
     <div class="container">
       <div class="logo">
-        <i class="fas fa-chart-line"></i>
-        <span>数据洞察</span>
+        <i class="fas fa-cube"></i>
+        <span>DATA VISION</span>
       </div>
       <ul class="nav-links">
-        <li><a href="#partition" class="nav-link">视频分区分布</a></li>
-        <li><a href="#duration" class="nav-link">时长与互动</a></li>
-        <li><a href="#up" class="nav-link">头部UP主</a></li>
-        <li><a href="#publish" class="nav-link">发布时间</a></li>
-        <li><a href="#correlation" class="nav-link">互动相关性</a></li>
-        <li><a href="#tag" class="nav-link">热门标签</a></li>
+        <li><a href="#partition" class="nav-link">
+          <i class="fas fa-th-large"></i> 分区分析
+        </a></li>
+        <li><a href="#duration" class="nav-link">
+          <i class="fas fa-clock"></i> 时长互动
+        </a></li>
+        <li><a href="#up" class="nav-link">
+          <i class="fas fa-users"></i> UP主洞察
+        </a></li>
+        <li><a href="#publish" class="nav-link">
+          <i class="fas fa-calendar"></i> 发布时间
+        </a></li>
+        <li><a href="#correlation" class="nav-link">
+          <i class="fas fa-link"></i> 互动关联
+        </a></li>
+        <li><a href="#tag" class="nav-link">
+          <i class="fas fa-tags"></i> 标签词云
+        </a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- 开屏模块（全屏虚化背景） -->
+  <!-- 全屏开屏页（模糊背景+动态标题） -->
   <section class="hero">
-    <div class="hero-bg"></div> <!-- 虚化背景层 -->
+    <div class="hero-bg"></div> <!-- 模糊背景层 -->
     <div class="hero-content">
-      <h1>视频平台深度数据分析</h1>
-      <p>多维度解析内容生态与用户行为</p>
+      <h1 class="title-fade">视频平台</h1>
+      <h1 class="title-fade" style="--delay: 0.3s">数据洞察报告</h1>
+      <p class="subtitle-fade">多维度解析内容生态</p>
     </div>
-    <img src="banner.jpg" alt="开屏图" class="hero-img" />
+    <img src="banner.jpg" alt="开屏背景" class="hero-img" />
   </section>
 
   <!-- 1. 视频分区分布分析 -->
   <section id="partition" class="section">
+    <!-- 模块标题（独立于卡片外） -->
+    <div class="section-header">
+      <h2><i class="fas fa-th-large"></i> 视频分区分布分析</h2>
+    </div>
     <div class="container flex-row">
       <div class="chart-box">
         <div id="partition_chart" class="chart" style="width: 100%; height: 500px;"></div>
@@ -48,17 +65,20 @@
       <div class="text-box">
         <h3>核心结论</h3>
         <ul>
-          <li>娱乐与游戏分区占比最高，合计超40%</li>
-          <li>知识区内容增长最快，同比上升18.7%</li>
-          <li>生活区视频平均互动率最高，达6.2%</li>
+          <li>娱乐与游戏分区占比超40%</li>
+          <li>知识区年增长率18.7%</li>
+          <li>生活区互动率达6.2%</li>
         </ul>
-        <p>分区分布直接反映平台内容生态，头部分区占据流量高地，而新兴分区展现出强劲的增长潜力。</p>
+        <p>头部分区垄断流量，新兴领域潜力显著。</p>
       </div>
     </div>
   </section>
 
   <!-- 2. 视频时长与互动关系（反向分栏） -->
   <section id="duration" class="section reverse">
+    <div class="section-header">
+      <h2><i class="fas fa-clock"></i> 视频时长与互动关系</h2>
+    </div>
     <div class="container flex-row">
       <div class="chart-box">
         <div id="duration_chart" class="chart" style="width: 100%; height: 500px;"></div>
@@ -66,17 +86,20 @@
       <div class="text-box">
         <h3>核心结论</h3>
         <ul>
-          <li>3-5分钟视频获最高平均点赞数</li>
-          <li>超15分钟视频评论率显著下降</li>
-          <li>1分钟内短视频分享率最高，适合传播</li>
+          <li>3-5分钟视频点赞最高</li>
+          <li>15分钟+视频评论率降40%</li>
+          <li>1分钟内短视频分享率达23%</li>
         </ul>
-        <p>时长直接影响用户互动行为，中短视频在互动指标上表现更优，长视频需在内容密度上突破。</p>
+        <p>中短视频更易触发互动，长视频需强化内容密度。</p>
       </div>
     </div>
   </section>
 
   <!-- 3. 头部UP主影响力分析 -->
   <section id="up" class="section">
+    <div class="section-header">
+      <h2><i class="fas fa-users"></i> 头部UP主影响力分析</h2>
+    </div>
     <div class="container flex-row">
       <div class="chart-box">
         <div id="top_up_chart" class="chart" style="width: 100%; height: 500px;"></div>
@@ -84,17 +107,20 @@
       <div class="text-box">
         <h3>核心结论</h3>
         <ul>
-          <li>头部1% UP主贡献32%平台总播放量</li>
-          <li>游戏区UP主粉丝增长速度最快</li>
-          <li>垂直领域UP主互动质量优于多元创作者</li>
+          <li>头部1% UP主贡献32%播放量</li>
+          <li>游戏区粉丝月增12%</li>
+          <li>垂直领域互动率高37%</li>
         </ul>
-        <p>头部效应显著，平台需平衡头部与中腰部创作者生态，垂直内容更易建立深度互动。</p>
+        <p>头部效应显著，垂直内容更易沉淀用户。</p>
       </div>
     </div>
   </section>
 
   <!-- 4. 视频发布时间分析（反向分栏） -->
   <section id="publish" class="section reverse">
+    <div class="section-header">
+      <h2><i class="fas fa-calendar"></i> 视频发布时间分析</h2>
+    </div>
     <div class="container flex-row">
       <div class="chart-box">
         <div id="publish_chart" class="chart" style="width: 100%; height: 500px;"></div>
@@ -102,17 +128,20 @@
       <div class="text-box">
         <h3>核心结论</h3>
         <ul>
-          <li>19:00-22:00为发布高峰，占比35%</li>
-          <li>周末下午观看量比工作日高27%</li>
-          <li>7:00-9:00发布视频完成率最高</li>
+          <li>19:00-22:00发布占比35%</li>
+          <li>周末观看量高27%</li>
+          <li>7:00-9:00完播率达82%</li>
         </ul>
-        <p>发布时间需契合用户活跃时段，早间内容虽少但粘性高，周末需针对性运营。</p>
+        <p>发布需契合用户节律，早间内容粘性极强。</p>
       </div>
     </div>
   </section>
 
   <!-- 5. 视频互动指标相关性分析 -->
   <section id="correlation" class="section">
+    <div class="section-header">
+      <h2><i class="fas fa-link"></i> 互动指标相关性分析</h2>
+    </div>
     <div class="container flex-row">
       <div class="chart-box">
         <div id="correlation_chart" class="chart" style="width: 100%; height: 500px;"></div>
@@ -120,17 +149,20 @@
       <div class="text-box">
         <h3>核心结论</h3>
         <ul>
-          <li>点赞与收藏强相关（r=0.87）</li>
-          <li>评论与分享中度相关（r=0.62）</li>
-          <li>完播率正向影响所有互动指标</li>
+          <li>点赞-收藏相关系数0.87</li>
+          <li>评论-分享相关系数0.62</li>
+          <li>完播率驱动所有互动</li>
         </ul>
-        <p>互动指标间存在内在关联，提升完播率是撬动整体互动的关键支点。</p>
+        <p>互动指标相互关联，完播率是核心支点。</p>
       </div>
     </div>
   </section>
 
   <!-- 6. 热门视频标签词云（反向分栏） -->
   <section id="tag" class="section reverse">
+    <div class="section-header">
+      <h2><i class="fas fa-tags"></i> 热门视频标签词云</h2>
+    </div>
     <div class="container flex-row">
       <div class="chart-box tag-cloud">
         <img src="tag_cloud.png" alt="标签词云" class="tag-img" />
@@ -138,23 +170,33 @@
       <div class="text-box">
         <h3>核心结论</h3>
         <ul>
-          <li>"生活"、"游戏"、"教程"为高频标签</li>
-          <li>季节性标签（如春节、暑期）随时间变化明显</li>
-          <li>"科技+生活"等跨界标签增长迅速</li>
+          <li>"生活""游戏""教程"为Top3标签</li>
+          <li>季节标签（春节/暑期）波动明显</li>
+          <li>"科技+生活"跨界标签增长15%</li>
         </ul>
-        <p>标签反映内容趋势，跨界融合与季节特性为内容创作提供方向。</p>
+        <p>标签折射内容趋势，跨界融合成新方向。</p>
       </div>
     </div>
   </section>
 
-  <!-- 页脚 -->
+  <!-- 科技感页尾 -->
   <footer class="footer">
     <div class="container">
-      <p>© 2025 视频数据分析报告 | 联系方式：data@example.com</p>
+      <div class="footer-top">
+        <p>© 2025 视频数据洞察平台</p>
+        <div class="social">
+          <a href="#"><i class="fab fa-weibo"></i></a>
+          <a href="#"><i class="fab fa-wechat"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>联系方式：data@example.com</p>
+      </div>
     </div>
   </footer>
 
-  <!-- 返回顶部 -->
+  <!-- 返回顶部（悬浮按钮） -->
   <button id="backToTop" class="back-to-top">
     <i class="fas fa-arrow-up"></i>
   </button>
