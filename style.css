@@ -49,28 +49,27 @@ nav ul li a:hover {
   height: auto;
 }
 
-/* 内容区域样式 */
+/* 替换原 .content 样式 */
 .content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* 自动适配屏幕，最小320px */
+  gap: 24px; /* 卡片间距 */
   padding: 20px;
 }
 
+/* 限制词云图大小，避免溢出 */
+#tag_cloud img {
+  max-width: 100%; /* 不超过容器宽度 */
+  height: auto;    /* 保持比例 */
+  display: block;  /* 居中 */
+  margin: 0 auto;
+}
+
+/* 优化卡片内边距，避免图表挤压 */
 .chart-card {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  padding: 20px;
-  transition: box-shadow 0.3s;
+  padding: 24px; 
+  border-radius: 12px;
 }
-
-.chart-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 悬停效果 */
-}
-
-.chart-card h2 {
-  margin-top: 0;
-}
-
 /* 页尾样式 */
 footer {
   background-color: #ffb6c1;
