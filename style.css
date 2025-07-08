@@ -1,22 +1,24 @@
-/* 全局重置 & 变量 */
+/* 全局变量：粉色系+科技感 */
+:root {
+  --pink-main: #FFB6C1;   /* 主粉 */
+  --pink-dark: #FF69B4;   /* 深粉（渐变终点） */
+  --pink-light: #FFF0F5;  /* 粉白（背景） */
+  --gray-dark: #1E1E1E;   /* 深灰（文字/边框） */
+  --glass: rgba(255,255,255,0.2); /* 玻璃透明层 */
+  --shadow: 0 8px 24px rgba(0,0,0,0.15); /* 科技阴影 */
+}
+
+/* 全局重置 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root {
-  --primary: #4263eb;   /* 主色 */
-  --light: #f1f5f9;     /* 浅灰 */
-  --dark: #1e293b;      /* 深灰 */
-  --text: #333;         /* 文字色 */
-  --shadow: 0 4px 12px rgba(0,0,0,0.05); /* 阴影 */
-}
-
 body {
   font-family: "Microsoft Yahei", sans-serif;
-  color: var(--text);
-  background: var(--light);
+  background: var(--pink-light);
+  color: var(--gray-dark);
   line-height: 1.6;
   scroll-behavior: smooth;
 }
@@ -27,13 +29,13 @@ body {
   padding: 0 20px;
 }
 
-/* 导航栏 */
+/* 悬浮渐变导航 */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background: white;
+  background: linear-gradient(90deg, var(--pink-main), var(--pink-dark));
   box-shadow: var(--shadow);
   z-index: 999;
 }
@@ -51,7 +53,7 @@ body {
   gap: 8px;
   font-size: 1.2rem;
   font-weight: bold;
-  color: var(--primary);
+  color: white;
 }
 
 .nav-links {
@@ -62,16 +64,21 @@ body {
 
 .nav-link {
   text-decoration: none;
-  color: var(--text);
+  color: white;
   padding: 8px 0;
-  transition: color 0.3s;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.nav-link.active, .nav-link:hover {
-  color: var(--primary);
+.nav-link:hover {
+  transform: translateY(-2px);
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255,255,255,0.5);
 }
 
-/* 开屏模块（全屏虚化） */
+/* 全屏开屏页（模糊+动态文字） */
 .hero {
   position: relative;
   height: 100vh;
@@ -98,7 +105,7 @@ body {
   width: 100%;
   height: 100%;
   background: inherit;
-  filter: blur(8px) brightness(0.8); /* 虚化+调暗 */
+  filter: blur(12px) brightness(0.8); /* 强模糊+调暗 */
   z-index: 2;
 }
 
@@ -109,21 +116,52 @@ body {
   color: white;
 }
 
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
+.title-fade {
+  font-size: 3.5rem;
+  margin: 10px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards;
 }
 
-.hero-content p {
+.title-fade:nth-child(2) { animation-delay: 0.3s; }
+.subtitle-fade {
   font-size: 1.2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s 0.6s forwards;
 }
 
-/* 内容模块（单屏高度，垂直滚动） */
-.section {
-  min-height: 100vh; /* 至少占满一屏 */
-  padding: 80px 0;   /* 避开导航栏高度 */
+/* 模块标题（独立栏，粉色渐变） */
+.section-header {
+  margin: 60px auto 20px; /* 避开导航高度 */
+  width: fit-content;
+  padding: 10px 20px;
+  background: linear-gradient(45deg, var(--pink-main), var(--pink-dark));
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.section-header h2 {
+  color: white;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
+  gap: 10px;
+}
+
+/* 内容模块（玻璃卡片+分栏） */
+.section {
+  min-height: 100vh;
+  padding: 40px 0;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.5s;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .flex-row {
@@ -132,35 +170,53 @@ body {
   align-items: center;
 }
 
-/* 分栏切换（正向/反向） */
 .reverse .flex-row {
   flex-direction: row-reverse;
 }
 
+/* 玻璃卡片（图表区） */
 .chart-box {
   flex: 2;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 15px;
   box-shadow: var(--shadow);
+  padding: 20px;
+  transition: all 0.3s;
 }
 
+.chart-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+/* 结论区（玻璃卡片） */
 .text-box {
   flex: 1;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 15px;
   box-shadow: var(--shadow);
+  padding: 20px;
+  transition: all 0.3s;
+}
+
+.text-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
 }
 
 .text-box h3 {
-  color: var(--primary);
-  margin-bottom: 20px;
+  color: var(--pink-dark);
+  margin-bottom: 15px;
+  font-size: 1.2rem;
 }
 
 .text-box ul {
   list-style: none;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .text-box ul li {
@@ -170,8 +226,8 @@ body {
 }
 
 .text-box ul li::before {
-  content: "•";
-  color: var(--primary);
+  content: "▸";
+  color: var(--pink-dark);
   position: absolute;
   left: 0;
 }
@@ -188,24 +244,54 @@ body {
   border-radius: 10px;
 }
 
-/* 页脚 */
+/* 科技感页尾 */
 .footer {
-  background: var(--light);
-  padding: 20px 0;
-  text-align: center;
+  background: linear-gradient(180deg, var(--pink-dark), var(--pink-main));
+  color: white;
+  padding: 40px 0;
 }
 
-/* 返回顶部按钮 */
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.social {
+  display: flex;
+  gap: 15px;
+}
+
+.social a {
+  color: white;
+  font-size: 1.2rem;
+  transition: all 0.3s;
+}
+
+.social a:hover {
+  transform: translateY(-3px);
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255,255,255,0.5);
+}
+
+.footer-bottom {
+  text-align: center;
+  opacity: 0.8;
+}
+
+/* 返回顶部按钮（悬浮玻璃按钮） */
 .back-to-top {
   position: fixed;
   bottom: 30px;
   right: 30px;
   width: 50px;
   height: 50px;
-  background: var(--primary);
-  color: white;
-  border: none;
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
   border-radius: 50%;
+  color: white;
   font-size: 1.2rem;
   cursor: pointer;
   box-shadow: var(--shadow);
@@ -220,16 +306,17 @@ body {
   visibility: visible;
 }
 
-/* 滚动动画（渐显） */
-.section {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.5s;
+.back-to-top:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-5px);
 }
 
-.section.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* 动画：渐显上移 */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* 响应式：小屏幕堆叠 */
@@ -239,5 +326,8 @@ body {
   }
   .chart-box, .text-box {
     width: 100%;
+  }
+  .section-header {
+    margin-top: 80px;
   }
 }
