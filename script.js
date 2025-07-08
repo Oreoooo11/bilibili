@@ -10,7 +10,25 @@ fetch('bili_analysis_results.json')
     initCorrelationChart(data.interaction_correlation);
   })
   .catch(error => console.error('Error loading JSON data:', error));
+// 滑动加载动画（放在 JSON 加载后，或直接在 DOM 加载后执行）
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in');
+        observer.unobserve(entry.target); // 只触发一次
+      }
+    });
+  }, {
+    rootMargin: '0px 0px 50px 0px' // 提前50px触发
+  });
 
+  // 给所有卡片添加初始隐藏样式
+  document.querySelectorAll('.chart-card').forEach(card => {
+    card.classList.add('fade-out');
+    observer.observe(card);
+  });
+});
 // 初始化视频分区分布分析图表
 function initPartitionChart(option) {
   const chart = echarts.init(document.getElementById('partition_chart'));
