@@ -1,8 +1,5 @@
 {
   "partition_analysis": {
-      "title": {
-          "text": "视频分区分布分析"
-      },
       "tooltip": {
           "trigger": "axis"
       },
@@ -200,9 +197,6 @@
       ]
   },
   "duration_interaction": {
-      "title": {
-          "text": "视频时长与互动关系"
-      },
       "tooltip": {
           "trigger": "axis"
       },
@@ -291,9 +285,7 @@
       ]
   },
   "top_up_owners": {
-      "title": {
-          "text": "头部UP主影响力分析"
-      },
+     
       "tooltip": {
           "trigger": "axis"
       },
@@ -405,10 +397,7 @@
       ]
   },
   "publish_time_analysis": {
-      "title": {
-          "text": "视频发布时间分析",
-          "left": "center"
-      },
+     
       "grid": [
           {
               "left": "10%",
@@ -638,9 +627,7 @@
       ]
   },
   "interaction_correlation": {
-      "title": {
-          "text": "视频互动指标相关性分析"
-      },
+      
       "tooltip": {
           "position": "top"
       },
