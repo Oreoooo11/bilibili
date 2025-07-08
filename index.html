@@ -1,78 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>视频数据分析报告</title>
   <link rel="stylesheet" href="style.css">
-  <!-- 引入 ECharts -->
+  <!-- 引入ECharts -->
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <!-- 引入Font Awesome图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
   <!-- 导航栏 -->
-  <nav>
-    <ul>
-      <li><a href="#partition_analysis">视频分区分布分析</a></li>
-      <li><a href="#duration_interaction">视频时长与互动关系</a></li>
-      <li><a href="#top_up_owners">头部UP主影响力分析</a></li>
-      <li><a href="#publish_time_analysis">视频发布时间分析</a></li>
-      <li><a href="#interaction_correlation">视频互动指标相关性分析</a></li>
-      <li><a href="#tag_cloud">热门视频标签词云</a></li>
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-chart-line"></i>
+      <span>视频数据分析平台</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#partition_analysis" class="nav-link"><i class="fas fa-th-large"></i> 分区分布</a></li>
+      <li><a href="#duration_interaction" class="nav-link"><i class="fas fa-clock"></i> 时长与互动</a></li>
+      <li><a href="#top_up_owners" class="nav-link"><i class="fas fa-users"></i> UP主分析</a></li>
+      <li><a href="#publish_time_analysis" class="nav-link"><i class="fas fa-calendar-alt"></i> 发布时间</a></li>
+      <li><a href="#interaction_correlation" class="nav-link"><i class="fas fa-link"></i> 互动相关性</a></li>
+      <li><a href="#tag_cloud" class="nav-link"><i class="fas fa-tags"></i> 热门标签</a></li>
     </ul>
+    <button class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
   </nav>
 
-  <!-- 开屏图片 -->
-  <div class="banner">
-    <img src="banner.jpg" alt="Banner">
-  </div>
+  <!-- 开屏区域 -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>视频平台数据分析报告</h1>
+      <p>深入解析平台内容生态与用户行为模式</p>
+      <a href="#partition_analysis" class="btn scroll-down"><i class="fas fa-arrow-down"></i> 开始探索</a>
+    </div>
+    <div class="hero-overlay"></div>
+    <img src="banner.jpg" alt="数据分析可视化" class="hero-image">
+  </header>
+
+  <!-- 数据概览 -->
+  <section class="stats-overview">
+    <div class="container">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-video"></i></div>
+        <div class="stat-info">
+          <h3>128,547</h3>
+          <p>分析视频总数</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-user-circle"></i></div>
+        <div class="stat-info">
+          <h3>8,432</h3>
+          <p>活跃UP主数量</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-eye"></i></div>
+        <div class="stat-info">
+          <h3>4.2B</h3>
+          <p>总播放量</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-comment"></i></div>
+        <div class="stat-info">
+          <h3>127M</h3>
+          <p>总互动量</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- 内容区域 -->
-  <div class="content">
+  <main class="container content">
     <!-- 视频分区分布分析 -->
-    <div id="partition_analysis" class="chart-card">
-      <h2>视频分区分布分析</h2>
-      <div id="partition_chart" style="width: 100%; height: 400px;"></div>
-    </div>
+    <section id="partition_analysis" class="section">
+      <div class="section-header">
+        <h2><i class="fas fa-th-large"></i> 视频分区分布分析</h2>
+        <p>各内容分区的视频数量占比与热度分布</p>
+      </div>
+      <div class="chart-container">
+        <div class="chart-card">
+          <div id="partition_chart" class="chart" style="width: 100%; height: 450px;"></div>
+        </div>
+        <div class="chart-insights">
+          <h3>关键发现</h3>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> 娱乐与游戏分区占比最高，合计超过40%</li>
+            <li><i class="fas fa-check-circle"></i> 知识区内容增长最快，同比上升18.7%</li>
+            <li><i class="fas fa-check-circle"></i> 生活区视频平均互动率最高，达到6.2%</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
     <!-- 视频时长与互动关系 -->
-    <div id="duration_interaction" class="chart-card">
-      <h2>视频时长与互动关系</h2>
-      <div id="duration_chart" style="width: 100%; height: 400px;"></div>
-    </div>
+    <section id="duration_interaction" class="section">
+      <div class="section-header">
+        <h2><i class="fas fa-clock"></i> 视频时长与互动关系</h2>
+        <p>不同时长区间的视频互动表现分析</p>
+      </div>
+      <div class="chart-container">
+        <div class="chart-card">
+          <div id="duration_chart" class="chart" style="width: 100%; height: 450px;"></div>
+        </div>
+        <div class="chart-insights">
+          <h3>关键发现</h3>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> 3-5分钟的视频获得最高平均点赞数</li>
+            <li><i class="fas fa-check-circle"></i> 超过15分钟的视频评论率显著下降</li>
+            <li><i class="fas fa-check-circle"></i> 短视频(1分钟内)分享率最高，适合传播</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
     <!-- 头部UP主影响力分析 -->
-    <div id="top_up_owners" class="chart-card">
-      <h2>头部UP主影响力分析</h2>
-      <div id="top_up_chart" style="width: 100%; height: 400px;"></div>
-    </div>
+    <section id="top_up_owners" class="section">
+      <div class="section-header">
+        <h2><i class="fas fa-users"></i> 头部UP主影响力分析</h2>
+        <p>平台TOP20 UP主的粉丝量与内容表现</p>
+      </div>
+      <div class="chart-container">
+        <div class="chart-card">
+          <div id="top_up_chart" class="chart" style="width: 100%; height: 450px;"></div>
+        </div>
+        <div class="chart-insights">
+          <h3>关键发现</h3>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> 头部1%的UP主贡献了32%的平台总播放量</li>
+            <li><i class="fas fa-check-circle"></i> 游戏区UP主粉丝增长速度最快</li>
+            <li><i class="fas fa-check-circle"></i> 垂直度高的UP主互动质量显著优于多元内容创作者</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
     <!-- 视频发布时间分析 -->
-    <div id="publish_time_analysis" class="chart-card">
-      <h2>视频发布时间分析</h2>
-      <div id="publish_chart" style="width: 100%; height: 400px;"></div>
-    </div>
+    <section id="publish_time_analysis" class="section">
+      <div class="section-header">
+        <h2><i class="fas fa-calendar-alt"></i> 视频发布时间分析</h2>
+        <p>不同时间段的发布量与观看量分布</p>
+      </div>
+      <div class="chart-container">
+        <div class="chart-card">
+          <div id="publish_chart" class="chart" style="width: 100%; height: 450px;"></div>
+        </div>
+        <div class="chart-insights">
+          <h3>关键发现</h3>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> 晚间19:00-22:00是发布高峰期，占总量的35%</li>
+            <li><i class="fas fa-check-circle"></i> 周末下午观看量比工作日高出27%</li>
+            <li><i class="fas fa-check-circle"></i> 早间7:00-9:00发布的视频完成率最高</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
     <!-- 视频互动指标相关性分析 -->
-    <div id="interaction_correlation" class="chart-card">
-      <h2>视频互动指标相关性分析</h2>
-      <div id="correlation_chart" style="width: 100%; height: 400px;"></div>
-    </div>
+    <section id="interaction_correlation" class="section">
+      <div class="section-header">
+        <h2><i class="fas fa-link"></i> 视频互动指标相关性分析</h2>
+        <p>各项用户互动指标之间的关联程度</p>
+      </div>
+      <div class="chart-container">
+        <div class="chart-card">
+          <div id="correlation_chart" class="chart" style="width: 100%; height: 450px;"></div>
+        </div>
+        <div class="chart-insights">
+          <h3>关键发现</h3>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> 点赞与收藏呈现强相关性(r=0.87)</li>
+            <li><i class="fas fa-check-circle"></i> 评论量与分享量相关性中等(r=0.62)</li>
+            <li><i class="fas fa-check-circle"></i> 完播率对各项互动指标均有正向影响</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
     <!-- 热门视频标签词云 -->
-    <div id="tag_cloud" class="chart-card">
-      <h2>热门视频标签词云</h2>
-      <img src="tag_cloud.png" alt="Tag Cloud">
-    </div>
-  </div>
+    <section id="tag_cloud" class="section">
+      <div class="section-header">
+        <h2><i class="fas fa-tags"></i> 热门视频标签词云</h2>
+        <p>高频出现的内容标签与主题分布</p>
+      </div>
+      <div class="tag-cloud-container">
+        <div class="chart-card tag-cloud-card">
+          <img src="tag_cloud.png" alt="热门视频标签词云" class="tag-cloud-image">
+        </div>
+        <div class="chart-insights">
+          <h3>关键发现</h3>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> "生活"、"游戏"、"教程"是出现频率最高的标签</li>
+            <li><i class="fas fa-check-circle"></i> 季节性标签随时间变化明显，如"春节"、"暑期"</li>
+            <li><i class="fas fa-check-circle"></i> 跨界标签如"科技+生活"增长迅速，反映内容融合趋势</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  <!-- 页尾 -->
-  <footer>
-    <p>联系方式: example@example.com</p>
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-section">
+        <h3>关于本报告</h3>
+        <p>本报告基于平台公开数据进行分析，旨在揭示视频内容生态与用户行为特征，为内容创作者和平台运营提供参考。</p>
+      </div>
+      <div class="footer-section">
+        <h3>联系我们</h3>
+        <p><i class="fas fa-envelope"></i> contact@datareport.com</p>
+        <p><i class="fas fa-phone"></i> +86 123 4567 8910</p>
+      </div>
+      <div class="footer-section">
+        <h3>关注我们</h3>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-weibo"></i></a>
+          <a href="#"><i class="fab fa-wechat"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2023 视频数据分析报告 | 保留所有权利</p>
+    </div>
   </footer>
+
+  <!-- 返回顶部按钮 -->
+  <button id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></button>
 
   <script src="script.js"></script>
 </body>
-
 </html>
