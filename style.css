@@ -1,0 +1,80 @@
+/* 全局样式 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff0f5; /* 浅浅的粉色 */
+}
+
+/* 导航栏样式 */
+nav {
+  background-color: #ffb6c1; /* 稍深一点的粉色 */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #ff69b4; /* 悬停效果 */
+}
+
+/* 开屏图片样式 */
+.banner {
+  text-align: center;
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+}
+
+/* 内容区域样式 */
+.content {
+  padding: 20px;
+}
+
+.chart-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+  transition: box-shadow 0.3s;
+}
+
+.chart-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 悬停效果 */
+}
+
+.chart-card h2 {
+  margin-top: 0;
+}
+
+/* 页尾样式 */
+footer {
+  background-color: #ffb6c1;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
