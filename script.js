@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. 加载JSON数据，初始化图表
+  // 1. 加载JSON数据，初始化ECharts（带科技感加载动画）
   fetch('bili_analysis_results.json')
     .then(res => res.json())
     .then(data => {
@@ -9,21 +9,20 @@ document.addEventListener('DOMContentLoaded', () => {
       initChart('publish_chart', data.publish_time_analysis);
       initChart('correlation_chart', data.interaction_correlation);
       
-      // 标记所有模块为“可见”（触发渐显动画）
+      // 标记模块可见（触发渐显动画）
       document.querySelectorAll('.section').forEach(sec => sec.classList.add('visible'));
     })
     .catch(err => console.error('数据加载失败:', err));
 
-  // 2. 导航联动：滚动时高亮当前模块
+  // 2. 导航联动：滚动高亮
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('.section');
 
   function updateNav() {
     const scrollPos = window.scrollY;
     sections.forEach((sec, index) => {
-      const offsetTop = sec.offsetTop - 100; // 提前100px触发高亮
-      const height = sec.offsetHeight;
-      if (scrollPos >= offsetTop && scrollPos < offsetTop + height) {
+      const offsetTop = sec.offsetTop - 100; // 提前触发
+      if (scrollPos >= offsetTop && scrollPos < offsetTop + sec.offsetHeight) {
         navLinks.forEach(link => link.classList.remove('active'));
         navLinks[index].classList.add('active');
       }
@@ -34,14 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNav();
     // 控制返回顶部按钮
     const backToTop = document.getElementById('backToTop');
-    if (window.scrollY > 500) {
-      backToTop.classList.add('visible');
-    } else {
-      backToTop.classList.remove('visible');
-    }
+    backToTop.classList.toggle('visible', window.scrollY > 500);
   });
 
-  // 3. 返回顶部功能
+  // 3. 返回顶部
   document.getElementById('backToTop').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
@@ -50,28 +45,31 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
-      const targetId = link.getAttribute('href');
-      const target = document.querySelector(targetId);
+      const target = document.querySelector(link.getAttribute('href'));
       if (target) {
-        const offset = 60; // 导航栏高度
         window.scrollTo({
-          top: target.offsetTop - offset,
+          top: target.offsetTop - 60, // 避开导航栏
           behavior: 'smooth'
         });
       }
     });
   });
 
-  // 5. ECharts初始化（带加载动画）
+  // 5. ECharts初始化（加载动画+响应式）
   function initChart(id, option) {
     const chartDom = document.getElementById(id);
     const chart = echarts.init(chartDom);
-    chart.showLoading({ text: '加载中...' }); // 加载提示
+    chart.showLoading({
+      text: '数据加载中...',
+      color: var(--pink-dark),
+      textColor: '#fff',
+      maskColor: 'rgba(255,255,255,0.2)'
+    });
     setTimeout(() => {
       chart.hideLoading();
       chart.setOption(option);
-      // 响应式：窗口变化时重绘
+      // 窗口变化时重绘
       window.addEventListener('resize', () => chart.resize());
-    }, 800);
+    }, 1000);
   }
 });
