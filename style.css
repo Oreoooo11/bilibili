@@ -41,12 +41,20 @@ nav ul li a:hover {
 
 /* 开屏图片样式 */
 .banner {
-  text-align: center;
+  overflow: hidden; /* 隐藏溢出，避免动画位移露底 */
 }
-
 .banner img {
-  width: 100%;
-  height: auto;
+  animation: fadeInUp 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px); /* 从下方滑入 */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* 替换原 .content 样式 */
