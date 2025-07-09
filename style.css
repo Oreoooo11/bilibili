@@ -1,40 +1,308 @@
-/* 全局背景修复：消除衔接痕迹 */
+:root {
+    --primary-color: #4e54c8;
+    --secondary-color: #8f94fb;
+    --dark-bg: #1a1d28;
+    --card-bg: #252a3a;
+    --text-light: #ffffff;
+    --text-muted: #a0aec0;
+    --border-color: #2d3748;
+    --success-color: #48bb78;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
-  /* 核心修改：固定背景+覆盖全屏+不重复 */
-  background-image: url('banner.jpg');
-  background-attachment: fixed; /* 背景固定，滚动时不移动 */
-  background-size: cover; /* 覆盖整个屏幕，保持比例 */
-  background-repeat: no-repeat; /* 禁止重复平铺 */
-  background-position: center center; /* 居中显示 */
-  background-color: #f0f0f0; /* 背景图加载前的过渡色 */
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #0f111a 100%);
+    color: var(--text-light);
+    overflow-x: hidden;
 }
 
-/* 修复图表容器样式（确保可见） */
-.chart-box {
-  /* 确保容器有明确高度，ECharts需要 */
-  min-height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* 侧边栏样式 */
+.sidebar {
+    width: 260px;
+    background: rgba(26, 29, 40, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
 }
 
-/* 内容卡片优化：增强透明度，减少与背景冲突 */
-.chart-box, .text-box {
-  background: rgba(255, 255, 255, 0.9); /* 提高透明度，减少突兀感 */
-  backdrop-filter: blur(8px); /* 增强模糊，让背景过渡更自然 */
-  border: none; /* 去掉边框，减少分割感 */
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+    padding: 0 12px;
 }
 
-/* 解决背景图滚动时的"断裂"问题 */
-html, body {
-  height: 100%;
-  overflow-x: hidden; /* 禁止横向滚动 */
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 12px;
 }
 
-/* 确保图表容器可见（防止被意外隐藏） */
+.logo h1 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.nav-items {
+    list-style: none;
+    flex-grow: 1;
+}
+
+.nav-items li {
+    margin-bottom: 8px;
+}
+
+.nav-items a {
+    display: flex;
+    padding: 12px 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+.nav-items a:hover {
+    background: rgba(79, 84, 200, 0.15);
+    color: var(--text-light);
+}
+
+.nav-items .active a {
+    background: rgba(79, 84, 200, 0.25);
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.footer-info {
+    padding: 16px 0;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    margin-top: 16px;
+}
+
+/* 主内容区样式 */
+.content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 32px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header h2 {
+    font-size: 28px;
+    font-weight: 600;
+    background: linear-gradient(to right, var(--text-light), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 16px 24px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    min-width: 140px;
+}
+
+.stat-item span {
+    display: block;
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.stat-item strong {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+/* 图表区域样式 */
+.chart-section {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.section-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.section-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-light);
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border: none;
+}
+
+.btn.primary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(79, 84, 200, 0.4);
+}
+
+.chart-container {
+    height: 500px;
+    width: 100%;
+}
+
 .chart {
-  width: 100% !important;
-  height: 100% !important;
-  position: relative;
-  z-index: 10; /* 确保在容器上层显示 */
+    height: 100%;
+    width: 100%;
+}
+
+/* 标签词云区域 */
+.tag-cloud-placeholder {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 2px dashed var(--border-color);
+    padding: 20px;
+}
+
+.tag-cloud-placeholder img {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.tag-cloud-placeholder p {
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+/* 页脚样式 */
+.footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--text-muted);
+    font-size: 14px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 20px;
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 80px;
+    }
+    
+    .sidebar .logo h1,
+    .sidebar .nav-items a span,
+    .sidebar .footer-info p {
+        display: none;
+    }
+    
+    .content {
+        margin-left: 80px;
+    }
+    
+    .logo {
+        justify-content: center;
+    }
+    
+    .logo-icon {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .stats {
+        margin-top: 20px;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .stat-item {
+        min-width: auto;
+        flex: 1;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .section-actions {
+        margin-top: 15px;
+        width: 100%;
+        justify-content: flex-end;
+    }
 }
