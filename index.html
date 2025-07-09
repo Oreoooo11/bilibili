@@ -1,206 +1,143 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>视频数据洞察平台</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- ECharts -->
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-  <!-- 图标库 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B站视频数据分析平台</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 </head>
 <body>
-  <!-- 悬浮渐变导航 -->
-  <nav class="navbar">
-    <div class="container">
-      <div class="logo">
-        <i class="fas fa-cube"></i>
-        <span>DATA VISION</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#partition" class="nav-link">
-          <i class="fas fa-th-large"></i> 分区分析
-        </a></li>
-        <li><a href="#duration" class="nav-link">
-          <i class="fas fa-clock"></i> 时长互动
-        </a></li>
-        <li><a href="#up" class="nav-link">
-          <i class="fas fa-users"></i> UP主洞察
-        </a></li>
-        <li><a href="#publish" class="nav-link">
-          <i class="fas fa-calendar"></i> 发布时间
-        </a></li>
-        <li><a href="#correlation" class="nav-link">
-          <i class="fas fa-link"></i> 互动关联
-        </a></li>
-        <li><a href="#tag" class="nav-link">
-          <i class="fas fa-tags"></i> 标签词云
-        </a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- 全屏开屏页（模糊背景+动态标题） -->
-  <section class="hero">
-    <div class="hero-bg"></div> <!-- 模糊背景层 -->
-    <div class="hero-content">
-      <h1 class="title-fade">视频平台</h1>
-      <h1 class="title-fade" style="--delay: 0.3s">数据洞察报告</h1>
-      <p class="subtitle-fade">多维度解析内容生态</p>
-    </div>
-    <img src="banner.jpg" alt="开屏背景" class="hero-img" />
-  </section>
-
-  <!-- 1. 视频分区分布分析 -->
-  <section id="partition" class="section">
-    <!-- 模块标题（独立于卡片外） -->
-    <div class="section-header">
-      <h2><i class="fas fa-th-large"></i> 视频分区分布分析</h2>
-    </div>
-    <div class="container flex-row">
-      <div class="chart-box">
-        <div id="partition_chart" class="chart" style="width: 100%; height: 500px !important;"></div>
-      </div>
-      <div class="text-box">
-        <h3>核心结论</h3>
-        <ul>
-          <li>娱乐与游戏分区占比超40%</li>
-          <li>知识区年增长率18.7%</li>
-          <li>生活区互动率达6.2%</li>
-        </ul>
-        <p>头部分区垄断流量，新兴领域潜力显著。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. 视频时长与互动关系（反向分栏） -->
-  <section id="duration" class="section reverse">
-    <div class="section-header">
-      <h2><i class="fas fa-clock"></i> 视频时长与互动关系</h2>
-    </div>
-    <div class="container flex-row">
-      <div class="chart-box">
-        <div id="duration_chart" class="chart" style="width: 100%; height: 500px !important;"></div>
-      </div>
-      <div class="text-box">
-        <h3>核心结论</h3>
-        <ul>
-          <li>3-5分钟视频点赞最高</li>
-          <li>15分钟+视频评论率降40%</li>
-          <li>1分钟内短视频分享率达23%</li>
-        </ul>
-        <p>中短视频更易触发互动，长视频需强化内容密度。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. 头部UP主影响力分析 -->
-  <section id="up" class="section">
-    <div class="section-header">
-      <h2><i class="fas fa-users"></i> 头部UP主影响力分析</h2>
-    </div>
-    <div class="container flex-row">
-      <div class="chart-box">
-        <div id="top_up_chart" class="chart" style="width: 100%; height: 500px !important;"></div>
-      </div>
-      <div class="text-box">
-        <h3>核心结论</h3>
-        <ul>
-          <li>头部1% UP主贡献32%播放量</li>
-          <li>游戏区粉丝月增12%</li>
-          <li>垂直领域互动率高37%</li>
-        </ul>
-        <p>头部效应显著，垂直内容更易沉淀用户。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. 视频发布时间分析（反向分栏） -->
-  <section id="publish" class="section reverse">
-    <div class="section-header">
-      <h2><i class="fas fa-calendar"></i> 视频发布时间分析</h2>
-    </div>
-    <div class="container flex-row">
-      <div class="chart-box">
-        <div id="publish_chart" class="chart" style="width: 100%; height: 500px !important;"></div>
-      </div>
-      <div class="text-box">
-        <h3>核心结论</h3>
-        <ul>
-          <li>19:00-22:00发布占比35%</li>
-          <li>周末观看量高27%</li>
-          <li>7:00-9:00完播率达82%</li>
-        </ul>
-        <p>发布需契合用户节律，早间内容粘性极强。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. 视频互动指标相关性分析 -->
-  <section id="correlation" class="section">
-    <div class="section-header">
-      <h2><i class="fas fa-link"></i> 互动指标相关性分析</h2>
-    </div>
-    <div class="container flex-row">
-      <div class="chart-box">
-        <div id="correlation_chart" class="chart" style="width: 100%; height: 500px !important;"></div>
-      </div>
-      <div class="text-box">
-        <h3>核心结论</h3>
-        <ul>
-          <li>点赞-收藏相关系数0.87</li>
-          <li>评论-分享相关系数0.62</li>
-          <li>完播率驱动所有互动</li>
-        </ul>
-        <p>互动指标相互关联，完播率是核心支点。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. 热门视频标签词云（反向分栏） -->
-  <section id="tag" class="section reverse">
-    <div class="section-header">
-      <h2><i class="fas fa-tags"></i> 热门视频标签词云</h2>
-    </div>
-    <div class="container flex-row">
-      <div class="chart-box tag-cloud">
-        <img src="tag_cloud.png" alt="标签词云" class="tag-img" />
-      </div>
-      <div class="text-box">
-        <h3>核心结论</h3>
-        <ul>
-          <li>"生活""游戏""教程"为Top3标签</li>
-          <li>季节标签（春节/暑期）波动明显</li>
-          <li>"科技+生活"跨界标签增长15%</li>
-        </ul>
-        <p>标签折射内容趋势，跨界融合成新方向。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 科技感页尾 -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top">
-        <p>© 2025 视频数据洞察平台</p>
-        <div class="social">
-          <a href="#"><i class="fab fa-weibo"></i></a>
-          <a href="#"><i class="fab fa-wechat"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
+    <!-- 侧边导航栏 -->
+    <nav class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">B</div>
+            <h1>B站数据分析</h1>
         </div>
-      </div>
-      <div class="footer-bottom">
-        <p>联系方式：data@example.com</p>
-      </div>
-    </div>
-  </footer>
+        <ul class="nav-items">
+            <li class="active"><a href="#partition">分区分析</a></li>
+            <li><a href="#duration">时长互动</a></li>
+            <li><a href="#upowners">UP主分析</a></li>
+            <li><a href="#publish">发布时间</a></li>
+            <li><a href="#correlation">互动相关性</a></li>
+            <li><a href="#tagcloud">标签词云</a></li>
+        </ul>
+        <div class="footer-info">
+            <p>数据更新时间: 2025-07-09</p>
+            <p>© 2025 B站数据分析平台</p>
+        </div>
+    </nav>
 
-  <!-- 返回顶部（悬浮按钮） -->
-  <button id="backToTop" class="back-to-top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
+    <!-- 主内容区 -->
+    <main class="content">
+        <!-- 头部 -->
+        <header class="header">
+            <h2>B站视频数据分析报告</h2>
+            <div class="stats">
+                <div class="stat-item">
+                    <span>视频总数</span>
+                    <strong>136</strong>
+                </div>
+                <div class="stat-item">
+                    <span>平均播放量</span>
+                    <strong>182万</strong>
+                </div>
+                <div class="stat-item">
+                    <span>头部UP主</span>
+                    <strong>10位</strong>
+                </div>
+            </div>
+        </header>
 
-  <script src="script.js"></script>
+        <!-- 分区分析 -->
+        <section id="partition" class="chart-section">
+            <div class="section-header">
+                <h3>视频分区分布分析</h3>
+                <div class="section-actions">
+                    <button class="btn">导出数据</button>
+                    <button class="btn primary">刷新</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div id="partition-chart" class="chart"></div>
+            </div>
+        </section>
+
+        <!-- 时长与互动 -->
+        <section id="duration" class="chart-section">
+            <div class="section-header">
+                <h3>视频时长与互动关系</h3>
+                <div class="section-actions">
+                    <button class="btn">导出数据</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div id="duration-chart" class="chart"></div>
+            </div>
+        </section>
+
+        <!-- UP主分析 -->
+        <section id="upowners" class="chart-section">
+            <div class="section-header">
+                <h3>头部UP主影响力分析</h3>
+                <div class="section-actions">
+                    <button class="btn">导出数据</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div id="upowners-chart" class="chart"></div>
+            </div>
+        </section>
+
+        <!-- 发布时间分析 -->
+        <section id="publish" class="chart-section">
+            <div class="section-header">
+                <h3>视频发布时间分析</h3>
+                <div class="section-actions">
+                    <button class="btn">导出数据</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div id="publish-chart" class="chart"></div>
+            </div>
+        </section>
+
+        <!-- 互动相关性 -->
+        <section id="correlation" class="chart-section">
+            <div class="section-header">
+                <h3>视频互动指标相关性分析</h3>
+                <div class="section-actions">
+                    <button class="btn">导出数据</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div id="correlation-chart" class="chart"></div>
+            </div>
+        </section>
+
+        <!-- 标签词云 -->
+        <section id="tagcloud" class="chart-section">
+            <div class="section-header">
+                <h3>热门视频标签词云</h3>
+                <div class="section-actions">
+                    <button class="btn">导出图片</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <div class="tag-cloud-placeholder">
+                    <img src="tag_cloud.png" alt="热门标签词云">
+                    <p>热门标签词云可视化展示</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>数据来源：Bilibili开放平台 | 分析时间：2025年7月9日</p>
+            <p>© 2025 B站数据分析平台 - 提供专业视频数据分析服务</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
