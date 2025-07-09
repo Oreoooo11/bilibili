@@ -1,325 +1,40 @@
-/* 全局变量：粉色系+科技感 */
-:root {
-  --pink-main: #FFB6C1;   /* 主粉 */
-  --pink-dark: #FF69B4;   /* 深粉（渐变终点） */
-  --pink-light: #FFF0F5;  /* 粉白（背景） */
-  --gray-dark: #1E1E1E;   /* 深灰（文字/边框） */
-  --glass: rgba(255,255,255,0.2); /* 玻璃透明层 */
-  --shadow: 0 8px 24px rgba(0,0,0,0.15); /* 科技阴影 */
-}
-
-/* 全局重置 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* 全局背景修复：消除衔接痕迹 */
 body {
-  font-family: "Microsoft Yahei", sans-serif;
-  background-image: url('banner.jpg'); ​
-  background-attachment: fixed; ​
-  background-size: cover; ​
-  background-position: center;​
-  background-repeat: no-repeat; ​
-  color: var(--gray-dark);
-  line-height: 1.6;
-  scroll-behavior: smooth;
+  /* 核心修改：固定背景+覆盖全屏+不重复 */
+  background-image: url('banner.jpg');
+  background-attachment: fixed; /* 背景固定，滚动时不移动 */
+  background-size: cover; /* 覆盖整个屏幕，保持比例 */
+  background-repeat: no-repeat; /* 禁止重复平铺 */
+  background-position: center center; /* 居中显示 */
+  background-color: #f0f0f0; /* 背景图加载前的过渡色 */
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* 悬浮渐变导航 */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(90deg, var(--pink-main), var(--pink-dark));
-  box-shadow: var(--shadow);
-  z-index: 999;
-}
-
-.navbar .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 20px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: white;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: white;
-  padding: 8px 0;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.nav-link:hover {
-  transform: translateY(-2px);
-  color: #fff;
-  text-shadow: 0 0 8px rgba(255,255,255,0.5);
-}
-
-/* 全屏开屏页（模糊+动态文字） */
-.hero {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-img {​
-  display: none; /* 隐藏开屏独立图片 */​
-}​
-​
-.hero-bg {​
-  display: none; /* 隐藏虚化层，避免遮挡全局背景 */​
-}2;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  color: white;
-}
-
-.title-fade {
-  font-size: 3.5rem;
-  margin: 10px 0;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s forwards;
-}
-
-.title-fade:nth-child(2) { animation-delay: 0.3s; }
-.subtitle-fade {
-  font-size: 1.2rem;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s 0.6s forwards;
-}
-
-/* 模块标题（独立栏，粉色渐变） */
-.section-header {
-  margin: 60px auto 20px; /* 避开导航高度 */
-  width: fit-content;
-  padding: 10px 20px;
-  background: linear-gradient(45deg, var(--pink-main), var(--pink-dark));
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-}
-
-.section-header h2 {
-  color: white;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* 内容模块（玻璃卡片+分栏） */
-.section {
-  min-height: 100vh;
-  padding: 40px 0;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.5s;
-}
-
-.section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.flex-row {
-  display: flex;
-  gap: 40px;
-  align-items: center;
-}
-
-.reverse .flex-row {
-  flex-direction: row-reverse;
-}
-
-/* 玻璃卡片（图表区） */
+/* 修复图表容器样式（确保可见） */
 .chart-box {
-  flex: 2;
-  background: rgba(255, 255, 255, 0.85);​
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 15px;
-  box-shadow: var(--shadow);
-  padding: 20px;
-  transition: all 0.3s;
-}
-
-.chart-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-}
-
-/* 结论区（玻璃卡片） */
-.text-box {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.85);​
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 15px;
-  box-shadow: var(--shadow);
-  padding: 20px;
-  transition: all 0.3s;
-}
-
-.text-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-}
-
-.text-box h3 {
-  color: var(--pink-dark);
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-}
-
-.text-box ul {
-  list-style: none;
-  margin-bottom: 15px;
-}
-
-.text-box ul li {
-  margin: 10px 0;
-  padding-left: 20px;
-  position: relative;
-}
-
-.text-box ul li::before {
-  content: "▸";
-  color: var(--pink-dark);
-  position: absolute;
-  left: 0;
-}
-
-/* 词云特殊处理 */
-.tag-cloud {
+  /* 确保容器有明确高度，ECharts需要 */
+  min-height: 500px;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
-.tag-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
+/* 内容卡片优化：增强透明度，减少与背景冲突 */
+.chart-box, .text-box {
+  background: rgba(255, 255, 255, 0.9); /* 提高透明度，减少突兀感 */
+  backdrop-filter: blur(8px); /* 增强模糊，让背景过渡更自然 */
+  border: none; /* 去掉边框，减少分割感 */
 }
 
-/* 科技感页尾 */
-.footer {
-  background: linear-gradient(180deg, var(--pink-dark), var(--pink-main));
-  color: white;
-  padding: 40px 0;
+/* 解决背景图滚动时的"断裂"问题 */
+html, body {
+  height: 100%;
+  overflow-x: hidden; /* 禁止横向滚动 */
 }
 
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.social {
-  display: flex;
-  gap: 15px;
-}
-
-.social a {
-  color: white;
-  font-size: 1.2rem;
-  transition: all 0.3s;
-}
-
-.social a:hover {
-  transform: translateY(-3px);
-  color: #fff;
-  text-shadow: 0 0 8px rgba(255,255,255,0.5);
-}
-
-.footer-bottom {
-  text-align: center;
-  opacity: 0.8;
-}
-
-/* 返回顶部按钮（悬浮玻璃按钮） */
-.back-to-top {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 50px;
-  height: 50px;
-  background: var(--glass);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 50%;
-  color: white;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s;
-  z-index: 999;
-}
-
-.back-to-top.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.back-to-top:hover {
-  background: rgba(255,255,255,0.3);
-  transform: translateY(-5px);
-}
-
-/* 动画：渐显上移 */
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 响应式：小屏幕堆叠 */
-@media (max-width: 992px) {
-  .flex-row, .reverse .flex-row {
-    flex-direction: column;
-  }
-  .chart-box, .text-box {
-    width: 100%;
-  }
-  .section-header {
-    margin-top: 80px;
-  }
+/* 确保图表容器可见（防止被意外隐藏） */
+.chart {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative;
+  z-index: 10; /* 确保在容器上层显示 */
 }
