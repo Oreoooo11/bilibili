@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 模拟从JSON文件加载数据
     const data = {
         partition_analysis: {
-            title: { text: "视频分区分布分析" },
             tooltip: { trigger: "axis" },
             legend: { data: ["视频数量", "平均播放量(万)", "平均时长(分钟)"] },
             xAxis: {
@@ -22,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         duration_interaction: {
-            title: { text: "视频时长与互动关系" },
             tooltip: { trigger: "axis" },
             legend: { data: ["平均播放量", "平均点赞", "平均弹幕", "平均分享"] },
             xAxis: {
@@ -39,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         top_up_owners: {
-            title: { text: "头部UP主影响力分析" },
             tooltip: { trigger: "axis" },
             legend: { data: ["视频数量", "总播放量(百万)", "平均点赞率(%)", "影响力指数"] },
             xAxis: {
@@ -59,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         publish_time_analysis: {
-            title: { text: "视频发布时间分析", left: "center" },
             grid: [
                 { left: "10%", top: "10%", width: "45%", height: "35%" },
                 { left: "55%", top: "10%", width: "45%", height: "35%" },
@@ -87,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         interaction_correlation: {
-            title: { text: "视频互动指标相关性分析" },
             tooltip: { position: "top" },
             grid: { height: "85%", top: "10%" },
             xAxis: {
