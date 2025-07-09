@@ -1,12 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 修复图表不显示：增加容器存在性检查+错误提示
+  // 初始化图表函数（合并并优化两个版本的initChart）
   function initChart(chartId, chartData) {
     const chartDom = document.getElementById(chartId);
+    
     // 检查容器是否存在
     if (!chartDom) {
       console.error(`图表容器 ${chartId} 不存在`);
       return;
     }
+    
     // 检查容器尺寸（ECharts需要明确尺寸）
     if (chartDom.offsetWidth === 0 || chartDom.offsetHeight === 0) {
       console.error(`图表容器 ${chartId} 尺寸为0，请检查CSS`);
@@ -14,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       chartDom.style.width = '100%';
       chartDom.style.height = '500px';
     }
+    
     const chart = echarts.init(chartDom);
     
     // 显示加载动画
@@ -24,13 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
       maskColor: 'rgba(255, 255, 255, 0.7)'
     });
 
-    // 模拟数据加载（防止因数据问题导致图表不显示）
+    // 模拟数据加载
     setTimeout(() => {
       try {
         // 检查数据是否有效
         if (!chartData || !chartData.series) {
           throw new Error('图表数据格式错误');
         }
+        
         // 合并基础配置（确保图表基础样式正常）
         const baseOption = {
           tooltip: { trigger: 'axis' },
@@ -38,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
           xAxis: { type: 'category' },
           yAxis: { type: 'value' }
         };
+        
+        // 合并用户提供的配置
         chart.setOption({ ...baseOption, ...chartData });
         chart.hideLoading();
       } catch (err) {
@@ -60,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return res.json();
       })
       .then(data => {
-        // 逐个初始化图表（确保每个图表都被正确调用）
+        // 逐个初始化图表
         initChart('partition_chart', data.partition_analysis);
         initChart('duration_chart', data.duration_interaction);
         initChart('top_up_chart', data.top_up_owners);
@@ -78,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('初始化失败:', err);
   }
 
-  // 2. 导航联动：滚动高亮
+  // 导航联动：滚动高亮
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('.section');
 
@@ -100,12 +106,12 @@ document.addEventListener('DOMContentLoaded', () => {
     backToTop.classList.toggle('visible', window.scrollY > 500);
   });
 
-  // 3. 返回顶部
+  // 返回顶部
   document.getElementById('backToTop').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // 4. 平滑滚动（导航跳转）
+  // 平滑滚动（导航跳转）
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
@@ -118,22 +124,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
-  // 5. ECharts初始化（加载动画+响应式）
-  function initChart(id, option) {
-    const chartDom = document.getElementById(id);
-    const chart = echarts.init(chartDom);
-    chart.showLoading({
-      text: '数据加载中...',
-      color: var(--pink-dark),
-      textColor: '#fff',
-      maskColor: 'rgba(255,255,255,0.2)'
-    });
-    setTimeout(() => {
-      chart.hideLoading();
-      chart.setOption(option);
-      // 窗口变化时重绘
-      window.addEventListener('resize', () => chart.resize());
-    }, 1000);
-  }
 });
